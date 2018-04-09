@@ -1,0 +1,8 @@
+#!/bin/sh
+
+cmdname="$(basename $0)"
+
+# Get last command in PATH, avoiding current script
+bin="$(type -p -a ${cmdname} | tail -n1)"
+
+exec "$bin" "$@"
