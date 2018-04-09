@@ -5,4 +5,10 @@ cmdname="$(basename $0)"
 # Get last command in PATH, avoiding current script
 bin="$(type -p -a ${cmdname} | tail -n1)"
 
+if [ "$1" != "--version" ]; then
+    if type tmux &>/dev/null; then
+        tmux select-window -t ":${cmdname}"
+    fi
+fi
+
 exec "$bin" "$@"
